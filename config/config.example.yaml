@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  timeout: 15
+
+pubsub:
+  subscription-id:
+  project-id: 
+
+firestore:
+  project-id:
+  database:
+  plan-summary-collection:
+  video-summary-collection: 
+  video-highlight-collection:
+  credential-file-path: 
+  queue-history-collection: 
+  
