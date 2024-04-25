@@ -69,11 +69,8 @@ id: queue id which getting from uploading video
                     "lng": 16.3668953,
                     "rating": 4.5,
                     "category": "location",
-                    "photo": "",
-                    "has_recommended_restaurant": false,
-                    "recommended_restaurant": {
-                        "photo": ""
-                    }
+                    "photos": [""],
+
                 },
                              {
                     "location_name": "Austrian National Library",
@@ -83,11 +80,7 @@ id: queue id which getting from uploading video
                     "lng": 16.3668953,
                     "rating": 4.5,
                     "category": "location",
-                    "photo": "",
-                    "has_recommended_restaurant": false,
-                    "recommended_restaurant": {
-                        "photo": ""
-                    }
+                    "photos": [""],
                 },
             ],
             "count_dining": 0
@@ -192,6 +185,7 @@ id: queue id which getting from uploading video
             "highlight_detail": ""
         },
     ],
+    "content_summary": "",
     "queue_id": "",
     "user_id": ""
 }
