@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/dreammnck/plan_retirever/pkg/v1/model"
 	"github.com/dreammnck/plan_retirever/pkg/v1/serializer"
 	"github.com/labstack/echo/v4"
+	"github.com/samber/lo"
 )
 
 func (h *planRetrieverHandler) VideoSummaryHandler(c echo.Context) error {
@@ -34,11 +36,10 @@ func (h *planRetrieverHandler) VideoSummaryHandler(c echo.Context) error {
 			PlaceID:      item.PlaceID,
 			Lng:          item.Lng,
 			Category:     item.Category,
+			Photos: lo.Map(item.Photos, func(photo model.Photo, _ int) string {
+				return photo.Reference
+			}),
 		}
-		if len(item.Photos) > 0 {
-			content.Photo = item.Photos[0].Reference
-		}
-
 		contentResp = append(contentResp, content)
 	}
 

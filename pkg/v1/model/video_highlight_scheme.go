@@ -6,15 +6,17 @@ type VideoHighlightContent struct {
 }
 
 type VideoHighlightFirestore struct {
-	Content []VideoHighlightContent `firestore:"content"`
-	QueueID string                  `firestore:"queue_id"`
-	UserID  string                  `firestore:"user_id"`
-	VideoID string                  `firestore:"video_id"`
+	Content       []VideoHighlightContent `firestore:"content"`
+	QueueID       string                  `firestore:"queue_id"`
+	UserID        string                  `firestore:"user_id"`
+	VideoID       string                  `firestore:"video_id"`
+	ContentSumary string                  `firestore:"content_summary"`
 }
 
 type VideoHightlight struct {
-	Content []VideoHighlightContent
-	QueueID string
-	UserID  string
-	VideoID string
+	Content       []VideoHighlightContent
+	QueueID       string
+	UserID        string
+	VideoID       string
+	ContentSumary string
 }

@@ -20,5 +20,5 @@ func (s *planRetrieverSvc) VideoHighlight(ctx context.Context, id string) (*mode
 
 	logger.Logger.Info("get video highligh done", slog.String("tag", "usecase video highlight"))
 
-	return &model.VideoHightlight{Content: content.Content, UserID: content.UserID, QueueID: content.QueueID, VideoID: content.VideoID}, nil
+	return &model.VideoHightlight{Content: content.Content, UserID: content.UserID, QueueID: content.QueueID, VideoID: content.VideoID, ContentSumary: content.ContentSumary}, nil
 }

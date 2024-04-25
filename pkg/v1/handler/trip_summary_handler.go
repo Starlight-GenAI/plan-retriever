@@ -7,6 +7,7 @@ import (
 	"github.com/dreammnck/plan_retirever/pkg/v1/model"
 	"github.com/dreammnck/plan_retirever/pkg/v1/serializer"
 	"github.com/labstack/echo/v4"
+	"github.com/samber/lo"
 )
 
 func (h *planRetrieverHandler) TripSummaryHandler(c echo.Context) error {
@@ -34,29 +35,16 @@ func (h *planRetrieverHandler) TripSummaryHandler(c echo.Context) error {
 
 		for _, loc := range item.LocationWithSummary {
 			locationWithSummary := serializer.LocationWithSummary{
-				LocationName:             loc.LocationName,
-				Summary:                  loc.Summary,
-				PlaceID:                  loc.PlaceID,
-				Lat:                      loc.Lat,
-				Lng:                      loc.Lng,
-				Category:                 loc.Category,
-				Rating:                   loc.Rating,
-				HasRecommendedRestaurant: loc.HasRecommendedRestaurant,
-				RecommendedRestaurant: serializer.RestaurantDetail{
-					Name:    loc.RecommendedRestaurant.Name,
-					Summary: loc.RecommendedRestaurant.Summary,
-					Rating:  loc.RecommendedRestaurant.Rating,
-					Lat:     loc.RecommendedRestaurant.Lat,
-					Lng:     loc.RecommendedRestaurant.Lng,
-				},
-			}
-
-			if len(loc.RecommendedRestaurant.Photos) > 0 {
-				locationWithSummary.RecommendedRestaurant.Photo = loc.RecommendedRestaurant.Photos[0].Reference
-			}
-
-			if len(loc.Photos) > 0 {
-				locationWithSummary.Photo = loc.Photos[0].Reference
+				LocationName: loc.LocationName,
+				Summary:      loc.Summary,
+				PlaceID:      loc.PlaceID,
+				Lat:          loc.Lat,
+				Lng:          loc.Lng,
+				Category:     loc.Category,
+				Rating:       loc.Rating,
+				Photos: lo.Map(loc.Photos, func(photo model.Photo, _ int) string {
+					return photo.Reference
+				}),
 			}
 
 			if loc.Category == model.DINING {
@@ -64,6 +52,23 @@ func (h *planRetrieverHandler) TripSummaryHandler(c echo.Context) error {
 			}
 
 			locationWithSummaryList = append(locationWithSummaryList, locationWithSummary)
+
+			if loc.HasRecommendedRestaurant {
+				recommendedLocation := serializer.LocationWithSummary{
+					LocationName: loc.RecommendedRestaurant.Name,
+					Summary:      loc.RecommendedRestaurant.Summary,
+					PlaceID:      loc.RecommendedRestaurant.PlaceID,
+					Lat:          loc.RecommendedRestaurant.Lat,
+					Lng:          loc.RecommendedRestaurant.Lng,
+					Category:     model.RECOMMENDED_DINING,
+					Rating:       loc.Rating,
+					Photos: lo.Map(loc.RecommendedRestaurant.Photos, func(photo model.Photo, _ int) string {
+						return photo.Reference
+					}),
+				}
+
+				locationWithSummaryList = append(locationWithSummaryList, recommendedLocation)
+			}
 		}
 		c.CountDining = countDining
 		c.LocationWithSummary = locationWithSummaryList

@@ -32,9 +32,10 @@ func (h *planRetrieverHandler) VideoHighlightHandler(c echo.Context) error {
 		}
 	})
 	return c.JSON(http.StatusOK, serializer.VideoHightlightResponse{
-		Content: contentResp,
-		UserID:  content.UserID,
-		QueueID: content.QueueID,
-		VideoID: content.VideoID,
+		Content:        contentResp,
+		UserID:         content.UserID,
+		QueueID:        content.QueueID,
+		VideoID:        content.VideoID,
+		ContentSummary: content.ContentSumary,
 	})
 }

@@ -7,15 +7,15 @@ type VideoSummaryRequest struct {
 }
 
 type VideoSummaryContent struct {
-	LocationName string  `json:"location_name"`
-	StartTime    float64 `json:"start_time"`
-	EndTime      float64 `json:"end_time"`
-	Summary      string  `json:"summary"`
-	PlaceID      string  `json:"place_id"`
-	Lat          float64 `json:"lat"`
-	Lng          float64 `json:"lng"`
-	Category     string  `json:"category"`
-	Photo        string  `json:"photo"`
+	LocationName string   `json:"location_name"`
+	StartTime    float64  `json:"start_time"`
+	EndTime      float64  `json:"end_time"`
+	Summary      string   `json:"summary"`
+	PlaceID      string   `json:"place_id"`
+	Lat          float64  `json:"lat"`
+	Lng          float64  `json:"lng"`
+	Category     string   `json:"category"`
+	Photos       []string `json:"photos"`
 }
 type VideoSummaryResponse struct {
 	Content         []VideoSummaryContent `json:"content"`

@@ -12,10 +12,11 @@ type VideoHighlightContent struct {
 }
 
 type VideoHightlightResponse struct {
-	Content []VideoHighlightContent `json:"content"`
-	QueueID string                  `json:"queue_id"`
-	UserID  string                  `json:"user_id"`
-	VideoID string                  `json:"video_id,omitempty"`
+	Content        []VideoHighlightContent `json:"content"`
+	QueueID        string                  `json:"queue_id"`
+	UserID         string                  `json:"user_id"`
+	ContentSummary string                  `json:"content_summary"`
+	VideoID        string                  `json:"video_id,omitempty"`
 }
 
 func (b VideoHighlightRequest) Validate() error {

@@ -1,7 +1,8 @@
 package model
 
 const (
-	DINING = "dining"
+	DINING             = "dining"
+	RECOMMENDED_DINING = "recommended_dining"
 )
 
 type LocationWithSummary struct {
